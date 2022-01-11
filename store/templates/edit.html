@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div>
+    {% for customer in customers %}
+    <div class="container bootstrap snippet">
+    <div class="row">
+  		<div class="col-sm-4"><!--left col-->
+
+
+            <br><br>
+            <div class="text-center">
+        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+      </div>
+
+        </div><!--/col-3-->
+    	<div class="col-sm-6">
+
+
+          <div class="tab-content">
+            <div class="tab-pane active" id="home">
+                <hr>
+                  <form class="form" action="/edit1/{{customer.id}}" method="post" id="registrationForm">
+                      {% csrf_token %}
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="first_name"><h6>First name</h6></label>
+                              <textarea class="form-control" name="firstname" required>{{customer.first_name}}</textarea>                          </div>
+                      </div>
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                            <label for="last_name"><h6>Last name</h6></label>
+                              <textarea class="form-control" name="lastname" required>{{customer.last_name}}</textarea>                          </div>
+                      </div>
+
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="phone"><h6>Phone</h6></label>
+                              <textarea class="form-control" name="phone" required>{{customer.phone}}</textarea>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="email"><h6>Email</h6></label>
+                              <input disabled type="email" class="form-control" name="email" id="email" placeholder="{{customer.email}}" title="enter your email.">
+                          </div>
+                      </div>
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="password"><h6>Password</h6></label>
+                              <input disabled type="password" class="form-control" name="password" id="password" placeholder="***************" title="enter your password.">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <br>
+                    <center><input class="btn btn-sm btn-warning col-lg-2" type="submit" value="SAVE "></center><br>
+
+                </div>
+              	</form>
+
+              <hr>
+
+             </div><!--/tab-pane-->
+
+
+              </div><!--/tab-pane-->
+          </div><!--/tab-content-->
+
+        </div><!--/col-9-->
+    </div><!--/row-->
+    {% endfor %}
+
+</div>
+
+{% endblock %}

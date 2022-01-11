@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="p-4 m-4">
+
+
+        <div class="col-lg-5 mt-4 mb-4 rounded mx-auto border pt-4">
+            <div class="text-center col">
+
+
+            <!-- <hr> -->
+            <div class="display-8"><h3>Please enter your register emailed address to reset your password</h3></div>
+            <hr>
+            </div>
+            <h3 hidden class="alert alert-light border rounded"></h3>
+            <form action="/otp_pass" method="POST">
+
+                {% csrf_token %}
+
+                <!-- email -->
+                <div class="form-group">
+                    <label for="">Otp</label>
+                    <input required type="text" name="otp" id=""
+
+                    class=" form-control-sm form-control" placeholder="1234">
+
+                </div>
+
+    <br>
+                 <div class="form-group">
+                    <center><input class="btn btn-sm btn-warning col-lg-2" type="submit" value="Verify"></center><br>
+                </div>
+                <!-- password -->
+
+
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

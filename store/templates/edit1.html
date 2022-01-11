@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div>
+    {% for add in address %}
+    <div class="container bootstrap snippet">
+    <div class="row">
+  		<div class="col-sm-4"><!--left col-->
+
+
+            <br><br>
+            <div class="text-center">
+        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+      </div>
+
+        </div><!--/col-3-->
+    	<div class="col-sm-6">
+
+
+          <div class="tab-content">
+            <div class="tab-pane active" id="home">
+                <hr>
+                  <form class="form" action="/edit3/{{add.id}}" method="post" id="registrationForm">
+                      {% csrf_token %}
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="first_name"><h6>doorno</h6></label>
+                              <textarea class="form-control" name="doorno" required>{{add.doorno}}</textarea>                          </div>
+                      </div>
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                            <label for="last_name"><h6>street_name</h6></label>
+                              <textarea class="form-control" name="street_name" required>{{street_name.street_name}}</textarea>                          </div>
+                      </div>
+
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="phone"><h6>district</h6></label>
+                              <textarea class="form-control" name="district" required>{{add.district}}</textarea>
+                          </div>
+                      </div> <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="phone"><h6>landmark</h6></label>
+                              <textarea class="form-control" name="phone" required>{{add.landmark}}</textarea>
+                          </div>
+                      </div> <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="phone"><h6>state</h6></label>
+                              <textarea class="form-control" name="phone" required>{{add.state}}</textarea>
+                          </div>
+                      </div>
+                    <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="phone"><h6>pincode</h6></label>
+                              <textarea class="form-control" name="phone" required>{{add.pincode}}</textarea>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <br>
+                    <center><input class="btn btn-sm btn-warning col-lg-2" type="submit" value="SAVE "></center><br>
+
+                </div>
+              	</form>
+
+              <hr>
+
+             </div><!--/tab-pane-->
+
+
+              </div><!--/tab-pane-->
+          </div><!--/tab-content-->
+
+        </div><!--/col-9-->
+    </div><!--/row-->
+    {% endfor %}
+
+</div>
+
+{% endblock %}

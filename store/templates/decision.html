@@ -1,0 +1,39 @@
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+  .button {
+    display: block;
+    width: 115px;
+    height: 25px;
+    background: #4E9CAF;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    line-height: 25px;
+}
+</style>
+<body>
+<h1>Click Yes to participate in our survey and No to redirect to home page</h1>
+<center>
+<form action="/polls" method="get">
+    {% csrf_token %}
+<button type="submit" class="btn btn-success">Yes</button><br><br>
+</form>
+<form action="/orders" method="get">
+    {% csrf_token %}
+<button type="submit" class="btn btn-danger">No</button><br><br>
+</form>
+    </center>
+</body>
+</html>
+{% endblock %}

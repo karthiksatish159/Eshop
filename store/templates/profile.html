@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div>
+    {% for customer in customers %}
+    <div class="container bootstrap snippet">
+    <div class="row">
+  		<div class="col-sm-4"><!--left col-->
+
+
+            <br><br>
+            <div class="text-center">
+        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+      </div>
+
+        </div><!--/col-3-->
+    	<div class="col-sm-6">
+
+
+          <div class="tab-content">
+            <div class="tab-pane active" id="home">
+                <hr>
+                  <form class="form" action="/edit{{customer.id}}" method="post" id="registrationForm">
+                      {% csrf_token %}
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="first_name"><h6>First name</h6></label>
+                              <input disabled type="text" class="form-control" name="first_name" id="first_name" placeholder="{{customer.first_name}}" title="enter your first name if any.">
+                          </div>
+                      </div>
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                            <label for="last_name"><h6>Last name</h6></label>
+                              <input disabled type="text" class="form-control" name="last_name" id="last_name" placeholder="{{customer.last_name}}" title="enter your last name if any.">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="phone"><h6>Phone</h6></label>
+                              <input disabled type="text" class="form-control" name="phone" id="phone" placeholder="{{customer.phone}}" title="enter your phone number if any.">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="email"><h6>Email</h6></label>
+                              <input disabled type="email" class="form-control" name="email" id="email" placeholder="{{customer.email}}" title="enter your email.">
+                          </div>
+                      </div>
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="password"><h6>Password</h6></label>
+                              <input disabled type="password" class="form-control" name="password" id="password" placeholder="***************" title="enter your password.">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                           <div class="col-xs-12">
+                                <br>
+                              	<button class="btn btn-lg btn-warning" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>EDIT</button>
+                               	<button hidden class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                            </div>
+                      </div>
+              	</form>
+
+              <hr>
+
+             </div><!--/tab-pane-->
+
+
+              </div><!--/tab-pane-->
+          </div><!--/tab-content-->
+
+        </div><!--/col-9-->
+    </div><!--/row-->
+
+
+
+    {% endfor %}
+    <hr>
+     {% for add in address %}
+    <div class="container bootstrap snippet">
+    <div class="row">
+    	<div class="col-sm-6">
+          <div class="tab-content">
+            <div class="tab-pane active" id="home1">
+                <hr>
+                  <form class="form" action="/edit2{{add.id}}" method="post" id="registrationForm1">
+                      {% csrf_token %}
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="first_name"><h6>doorno</h6></label>
+                              <input disabled type="text" class="form-control" name="doorno" id="doorno" placeholder="{{add.doorno}}" title="enter your first name if any.">
+                          </div>
+                      </div>
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                            <label for="last_name"><h6>street_name</h6></label>
+                              <input disabled type="text" class="form-control" name="street_name" id="street_name" placeholder="{{add.street_name}}" title="enter your last name if any.">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="phone"><h6>city</h6></label>
+                              <input disabled type="text" class="form-control" name="city" id="city" placeholder="{{add.city}}" title="enter your phone number if any.">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="email"><h6>district</h6></label>
+                              <input disabled type="email" class="form-control" name="district" id="district" placeholder="{{add.district}}" title="enter your email.">
+                          </div>
+                      </div>
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="password"><h6>landmark</h6></label>
+                              <input disabled type="text" class="form-control" name="landmark" id="landmark" placeholder="{{add.landmark}}" title="enter your password.">
+                          </div>
+                      </div>
+                       <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="password"><h6>state</h6></label>
+                              <input disabled type="text" class="form-control" name="state" id="state" placeholder="{{add.state}}" >
+                          </div>
+                      </div>
+                         <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="password"><h6>pincode</h6></label>
+                              <input disabled type="text" class="form-control" name="pincode" id="pincode" placeholder="{{add.pincode}}" >
+                          </div>
+                      </div>
+                      <div class="form-group">
+                           <div class="col-xs-12">
+                                <br>
+                              	<button class="btn btn-lg btn-warning" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>EDIT</button>
+                               	<button hidden class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                            </div>
+                      </div>
+              	</form>
+
+              <hr>
+
+             </div><!--/tab-pane-->
+
+
+              </div><!--/tab-pane-->
+          </div><!--/tab-content-->
+
+        </div><!--/col-9-->
+    </div><!--/row-->
+
+
+
+    {% endfor %}
+</div>
+
+{% endblock %}

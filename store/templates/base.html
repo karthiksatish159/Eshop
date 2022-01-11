@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+{% load static %}
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href="{% static 'main/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{% static 'main/css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{% static 'saler/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">
+    </script>
+
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">
+    </script>
+
+
+    <link href=
+"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
+
+  <title>Shopfiy</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Arial;
+}
+
+/*the container must be positioned relative:*/
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9;
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}
+</style>
+
+</head>
+
+<!--Nav-bar-->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Shopify</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <nav class="navbar navbar-warning bg-warning">
+    <form  autocomplete="off"  class="d-flex" method="post" action="search">{% csrf_token %}
+      <div class="autocomplete" style="width:300px;">
+      <input id="myInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+      </div>
+      <button class="btn btn-outline-warning" type="submit">Search</button></form>
+  </nav>
+
+
+</form>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-0 mb-lg-0">
+
+
+      </ul>
+
+      <ul class="navbar-nav me-0">
+
+
+
+      <ul class="navbar-nav me-0">
+
+        
+
+        {% if request.session.customer %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/cart"><i class="fa fa-shopping-cart" style="font-size:20px"></i><span class="badge badge-black">{{request.session.cart.keys|length}}</span></a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/orders">Orders<span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/logout">Logout<span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/profile">Profile<span class="sr-only"></span></a>
+        </li>
+          <li class="nav-item ">
+          <a class="nav-link" href="/dashboard">Analytics<span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/polls">PollAnalytics<span class="sr-only"></span></a>
+        </li>
+          <li class="nav-item ">
+          <a class="nav-link" href="/contact">Contact Us<span class="sr-only"></span></a>
+        </li>
+
+        {% else %}
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Cart<span class="badge badge-black"></span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/signup">Sign-up</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/login">Login</a>
+        </li>
+        {% endif %}
+
+      </ul>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    {% block content %}{% endblock %}
+
+  <!-- Optional JavaScript; choose one of the two! -->
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous"></script>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+    -->
+
+
+<script>
+function autocomplete(inp, arr) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      /*close any already open lists of autocompleted values*/
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      /*create a DIV element that will contain the items (values):*/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      /*append the DIV element as a child of the autocomplete container:*/
+      this.parentNode.appendChild(a);
+      /*for each item in the array...*/
+      for (i = 0; i < arr.length; i++) {
+        /*check if the item starts with the same letters as the text field value:*/
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          /*create a DIV element for each matching element:*/
+          b = document.createElement("DIV");
+          /*make the matching letters bold:*/
+          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].substr(val.length);
+          /*insert a input field that will hold the current array item's value:*/
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          /*execute a function when someone clicks on the item value (DIV element):*/
+          b.addEventListener("click", function(e) {
+              /*insert the value for the autocomplete text field:*/
+              inp.value = this.getElementsByTagName("input")[0].value;
+              /*close the list of autocompleted values,
+              (or any other open lists of autocompleted values:*/
+              closeAllLists();
+          });
+          a.appendChild(b);
+        }
+      }
+  });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+      }
+    }
+  }
+  /*execute a function when someone clicks in the document:*/
+  document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
+  });
+}
+
+/*An array containing all the country names in the world:*/
+var countries = ["Wonder House Books Early Learning Action Words Puz","HALO NATION® Highly Simulation Metal Diecast Mini","MIZAGO","Fabricorn","Click to open expanded view Redmi Note 10 (Frost","Samsung Galaxy M31 (Space Black, 6GB RAM, 128GB St","Click to open expanded view Redmi 9A (Nature Gree","Click to open expanded view Samsung Galaxy M51 (E","WeCool Moonwalk Mini Earbuds with Magnetic Chargin","Sony MDR-XB55AP Wired Extra Bass in-Ear Headphones","Samsung Galaxy Buds+ (Black)	6990	EAR PHONES","Engage W1 Perfume Spray For Women, Fruity and Flor","The Man Company Spice No Gas Eau De Toilette - 100","Yardley London Gentleman Classic Daily Wear Perfum","Roll over image to zoom in Body Cupid Secret Love","Ustraa Scuba Cologne - 100 ml - Perfume for Men	499","Jaguar Classic Eau De Toilette, 100 ml	1800	SCENTS","Fogg I Am Queen Scent For Women, 100ml	175	SCENTS","All Good Scents SMOOTH Eau De Toilette, Perfume fo","All Good Scents Urbane Nights Branded EDT Perfume","OnePlus 80 cm (32 inches) Y Series HD Ready LED Sm","TCL 139 cm (55 inches) AI 4K Ultra HD Certified A","Diva Enterprise Kids Archery Bow and Arrow Toy Set","FunBlast Pull Back Vehicles Toy Cars Playset - Pac","Genius Box - Play some Learning Magical Planet Ear","Wonder House Books Early Learning Action Words Puz","HALO NATION® Highly Simulation Metal Diecast Mini","van heusan","max","PeterEngland","US polo","Dennis Lingo","allensolly","iphone12Mini","FOGG","VILLIAN","boat airpods","one plus bullets","mi 4x","mi 4a","LG","BoAt Rockerz 255F Bluetooth Headset (Ocean Blue,"]
+/*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
+autocomplete(document.getElementById("myInput"), countries);
+</script>
+
+</body>
+
+</html>
